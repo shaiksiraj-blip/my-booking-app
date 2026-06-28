@@ -1,4 +1,3 @@
-import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { NextAuthOptions } from 'next-auth'
 import { prisma } from './prisma'
@@ -38,7 +37,7 @@ export const authOptions: NextAuthOptions = {
       })
       return true
     },
-    async session({ session, token }) {
+    async session({ session }) {
       if (session.user?.email) {
         const dbUser = await prisma.user.findUnique({
           where: { email: session.user.email },
@@ -51,5 +50,3 @@ export const authOptions: NextAuthOptions = {
     },
   },
 }
-
-export default NextAuth(authOptions)
