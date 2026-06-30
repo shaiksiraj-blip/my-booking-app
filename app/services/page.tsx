@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { prisma } from '../lib/prisma'
 import Navbar from '../components/Navbar'
-
+export const dynamic = 'force-dynamic'
 export default async function ServicesPage() {
   const services = await prisma.service.findMany({
     where: { isActive: true },
